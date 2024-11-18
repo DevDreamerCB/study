@@ -1,0 +1,67 @@
+<?php
+/*
+当请求从 JavaScript 发送到 PHP 页面时，发生：
+
+PHP 创建 "cd_catalog.xml" 文件的 XML DOM 对象 
+循环所有 "artist" 元素 (nodetypes = 1)，
+查找与 JavaScript 所传数据向匹配的名字 
+找到 CD 包含的正确 artist 
+输出 album 的信息，并发送到 "txtHint" 占位符 
+*/
+/*
+节点
+根据 DOM，XML 文档中的每个成分都是一个节点。
+
+DOM 是这样规定的：
+
+整个文档是一个文档节点 
+每个 XML 标签是一个元素节点 
+包含在 XML 元素中的文本是文本节点 
+每一个 XML 属性是一个属性节点 
+注释属于注释节点 
+
+nodeType 属性可返回节点的类型。
+最重要的节点类型是：
+元素类型 节点类型 
+元素element 1 
+属性attr 2 
+文本text 3 
+注释comments 8 
+文档document 9 
+*/
+$q=$_GET["q"];
+
+$xmlDoc = new DOMDocument();
+$xmlDoc->load("cd_catalog.xml");
+
+//返回 xmlDoc文档节点下的所有 <ARTIST> 元素节点
+$x=$xmlDoc->getElementsByTagName('ARTIST');
+
+for ($i=0; $i<=$x->length-1; $i++)
+{
+//Process only element nodes
+if ($x->item($i)->nodeType==1)
+  {
+  	// 或者 if ($x->item($i)->childNodes->item(0)->nodeValue == $q)
+    echo $x->item($i)->nodeValue.":".$x->item($i)->nodeName."<br>";
+    if ($x->item($i)->nodeValue == $q)
+    { 
+    $y=($x->item($i)->parentNode);
+    }
+  }
+}
+
+$cd=($y->childNodes);
+//echo $cd->length;
+for ($i=0;$i<$cd->length;$i++)
+{ 
+//Process only element nodes
+if ($cd->item($i)->nodeType==1)
+  { 
+  echo($cd->item($i)->nodeName);
+  echo(": ");
+  echo($cd->item($i)->nodeValue);
+  echo("<br>");
+  } 
+}
+?>

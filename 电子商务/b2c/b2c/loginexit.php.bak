@@ -1,0 +1,8 @@
+<?php
+	session_start();
+	unset($_SESSION['userid']);
+	unset($_SESSION['usertype']);
+	session_destroy();
+	echo $_SESSION['usertype'].'ppp'; 
+	//header("location: userlogin.htm");
+?>

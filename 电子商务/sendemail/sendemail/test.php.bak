@@ -1,0 +1,15 @@
+<?php
+
+$php -r "print_r(openssl_get_cert_locations());"
+Array
+(
+    [default_cert_file] => /opt/lampp/share/openssl/cert.pem
+    [default_cert_file_env] => SSL_CERT_FILE
+    [default_cert_dir] => /opt/lampp/share/openssl/certs
+    [default_cert_dir_env] => SSL_CERT_DIR
+    [default_private_dir] => /opt/lampp/share/openssl/private
+    [default_default_cert_area] => /opt/lampp/share/openssl
+    [ini_cafile] => 
+    [ini_capath] => 
+)
+?>

@@ -1,0 +1,9 @@
+<?php
+$userinfo= $_POST["userinfo"];
+$con = mysql_connect("localhost","root","sql");
+mysql_select_db("qing_zhou", $con); mysql_query("set names gb2312 ");
+$SQL = "delete from php_admin where userid='".$userinfo."'";
+//echo $SQL; die();
+$RS0 = mysql_query($SQL);
+mysql_close($con); $RS=NULL; $Con =NULL;
+?>

@@ -1,0 +1,28 @@
+<!--
+该表单是这样工作的：
+
+当用户在输入域中按下并松开按键时，
+会触发一个事件 
+当该事件被触发时，执行名为 showHint() 的函数 
+表单的下面是一个名为 "txtHint" 的 <span>。
+它用作 showHint() 函数所返回数据的占位符。 
+-->
+
+<html>
+<head>
+<script src="clienthint.js?abmcjd=g"></script> 
+
+</head>
+
+<body>
+
+
+<form id="form1"> 
+First Name:
+<input type="text" id="txt1" onkeyup="showHint(this.value)">
+  
+</form>
+
+<p>Suggestions: <span id="txtHint" name="txtHint">abc</span></p>
+</body>
+</html>

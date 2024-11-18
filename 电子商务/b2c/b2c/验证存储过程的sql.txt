@@ -1,0 +1,17 @@
+
+set @orderid=(select orderid from t_order0 where ordercode="181025111957" limit 1);
+set @checkedproduct='1,1,2,3';
+set @sql='';
+set @i=1;
+
+SET @result = REPLACE(SUBSTRING(SUBSTRING_INDEX(@checkedproduct , ',', @i),  LENGTH(SUBSTRING_INDEX(@checkedproduct , ',', @i -1)) + 1),  ',', '');
+SET @i = 3;
+
+SET @result1 = REPLACE(SUBSTRING(SUBSTRING_INDEX(@checkedproduct , ',', @i),  LENGTH(SUBSTRING_INDEX(@checkedproduct , ',', @i -1)) + 1),  ',', '');
+
+select @result1;
+
+set @sql=CONCAT(@sql,"insert into t_orderdetail(orderid, productcode, price, purchasenumber, productimage) values(",@orderid,", ",@result,", (select price from t_product where productcode= ",@result,"), ",@result1,", (select productimage from t_product where productcode= ",@result,"));");
+
+
+select @sql;

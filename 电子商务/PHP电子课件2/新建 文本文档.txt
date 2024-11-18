@@ -1,0 +1,23 @@
+输入用户名和账户校验，AJAX
+
+userlogin.php，和usercheck.php（新写）
+
+事务，多条sql语句，要么都成功，要么都失败
+
+DECLARE t_error INTEGER DEFAULT 0;
+DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET t_error=1;
+
+//开始一个事务
+START TRANSACTION;
+
+
+//这里放sql语句，看存储过程参数.txt
+
+
+IF t_error = 1 THEN
+	ROLLBACK;
+ELSE
+	COMMIT;
+END IF;
+
+END

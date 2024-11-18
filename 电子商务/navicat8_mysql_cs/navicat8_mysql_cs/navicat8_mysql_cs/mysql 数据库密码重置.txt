@@ -1,0 +1,15 @@
+方法一:
+
+(适用于管理员或者有全局权限的用户重设其它用户的密码)
+
+进入命令行模式
+
+mysql -u root -p
+
+mysql>use mysql;
+
+mysql> UPDATE user SET password=PASSWORD("sql") WHERE user='root';
+
+mysql> FLUSH PRIVILEGES;
+
+mysql> quit;

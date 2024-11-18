@@ -1,0 +1,469 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0034)http://www.asp163.org/File544.html -->
+<HTML lang=zh-CN xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>getElementById与getElementsByName与getElementsByTagName总结 From JavaScript by 大头爸爸文档中心 - www.asp163.org</TITLE>
+<META http-equiv=Content-Type content=text/html;charset=gb2312>
+<META http-equiv=Content-Language content=zh-CN>
+<META content=all name=robots>
+<META http-equiv=x-ua-compatible content=ie=7>
+<META content=zm_asp163(at)163.com,大头爸爸 name=author>
+<META content=www.asp163.org,转载请注明 name=Copyright>
+<META 
+content="1.getElementById作用：一般页面里ID是唯一的，用于准备定为一个元素语法： document.getElementById(id)参数：id :必选项为字符串(String)返回值：对象; 返回相同id对象中的第一个，按在页面中出现的次序,如果无符合条件的对象，则返回 ..." 
+name=description>
+<META content=getElementById,getElementsByName,getElementsByTagName 
+name=keywords><LINK id=filestyle 
+href="getElementById与getElementsByName与getElementsByTagName总结 From JavaScript by 大头爸爸文档中心 - www_asp163_org.files/file.css" 
+type=text/css rel=stylesheet>
+<SCRIPT language=JavaScript 
+src="getElementById与getElementsByName与getElementsByTagName总结 From JavaScript by 大头爸爸文档中心 - www_asp163_org.files/common.js" 
+type=text/JavaScript></SCRIPT>
+
+<SCRIPT language=JavaScript 
+src="getElementById与getElementsByName与getElementsByTagName总结 From JavaScript by 大头爸爸文档中心 - www_asp163_org.files/prototype-1.3.1.js" 
+type=text/JavaScript></SCRIPT>
+
+<META content="MSHTML 6.00.2900.3698" name=GENERATOR></HEAD>
+<BODY>
+<DIV class=main>
+<DIV class=logo>
+<H1><A class=logo_a href="http://www.asp163.org/">ASP163.Org</A></H1></DIV>
+<DIV id=content><!-- 左边一栏 -->
+<DIV id=left>
+<DIV class=left_box>
+<DIV class=left_title>·目录导航</DIV>
+<DIV class=left_box_list>
+<DIV class=left_menu_css 
+style="PADDING-LEFT: 20px; BACKGROUND: url(/images/folder/close.gif) no-repeat 0px 1px"><A 
+class=left_menu_a href="http://www.asp163.org/Folder2-1.html">技术文档</A></DIV>
+<DIV class=left_menu_css 
+style="PADDING-LEFT: 35px; BACKGROUND: url(/images/folder/close.gif) no-repeat 15px 1px"><A 
+class=left_menu_a href="http://www.asp163.org/Folder11-1.html">WEB开发</A></DIV>
+<DIV class=left_menu_css 
+style="PADDING-LEFT: 50px; BACKGROUND: url(/images/folder/close.gif) no-repeat 30px 1px"><A 
+class=left_menu_a href="http://www.asp163.org/Folder12-1.html">ASP</A></DIV>
+<DIV class=left_menu_css 
+style="PADDING-LEFT: 50px; BACKGROUND: url(/images/folder/close.gif) no-repeat 30px 1px"><A 
+class=left_menu_a href="http://www.asp163.org/Folder18-1.html">CSS</A></DIV>
+<DIV class=left_menu_css 
+style="PADDING-LEFT: 50px; BACKGROUND: url(/images/folder/open.gif) no-repeat 30px 1px"><A 
+class=left_menu_a href="http://www.asp163.org/Folder23-1.html"><SPAN 
+style="COLOR: red">JavaScript</SPAN></A></DIV>
+<DIV class=left_menu_css 
+style="PADDING-LEFT: 50px; BACKGROUND: url(/images/folder/close.gif) no-repeat 30px 1px"><A 
+class=left_menu_a href="http://www.asp163.org/Folder24-1.html">DLL</A></DIV>
+<DIV class=left_menu_css 
+style="PADDING-LEFT: 50px; BACKGROUND: url(/images/folder/close.gif) no-repeat 30px 1px"><A 
+class=left_menu_a href="http://www.asp163.org/Folder27-1.html">FSO</A></DIV>
+<DIV class=left_menu_css 
+style="PADDING-LEFT: 50px; BACKGROUND: url(/images/folder/close.gif) no-repeat 30px 1px"><A 
+class=left_menu_a href="http://www.asp163.org/Folder37-1.html">SQL</A></DIV>
+<DIV class=left_menu_css 
+style="PADDING-LEFT: 50px; BACKGROUND: url(/images/folder/close.gif) no-repeat 30px 1px"><A 
+class=left_menu_a href="http://www.asp163.org/Folder46-1.html">PHP</A></DIV>
+<DIV class=left_menu_css 
+style="PADDING-LEFT: 35px; BACKGROUND: url(/images/folder/close.gif) no-repeat 15px 1px"><A 
+class=left_menu_a href="http://www.asp163.org/Folder14-1.html">Delphi</A></DIV>
+<DIV class=left_menu_css 
+style="PADDING-LEFT: 35px; BACKGROUND: url(/images/folder/close.gif) no-repeat 15px 1px"><A 
+class=left_menu_a href="http://www.asp163.org/Folder19-1.html">VB</A></DIV>
+<DIV class=left_menu_css 
+style="PADDING-LEFT: 35px; BACKGROUND: url(/images/folder/close.gif) no-repeat 15px 1px"><A 
+class=left_menu_a href="http://www.asp163.org/Folder43-1.html">JAVA</A></DIV>
+<DIV class=left_menu_css 
+style="PADDING-LEFT: 35px; BACKGROUND: url(/images/folder/close.gif) no-repeat 15px 1px"><A 
+class=left_menu_a href="http://www.asp163.org/Folder48-1.html">regex</A></DIV>
+<DIV class=left_menu_css 
+style="PADDING-LEFT: 20px; BACKGROUND: url(/images/folder/close.gif) no-repeat 0px 1px"><A 
+class=left_menu_a href="http://www.asp163.org/Folder3-1.html">数据库</A></DIV>
+<DIV class=left_menu_css 
+style="PADDING-LEFT: 20px; BACKGROUND: url(/images/folder/close.gif) no-repeat 0px 1px"><A 
+class=left_menu_a href="http://www.asp163.org/Folder4-1.html">计算机技术</A></DIV>
+<DIV class=left_menu_css 
+style="PADDING-LEFT: 20px; BACKGROUND: url(/images/folder/close.gif) no-repeat 0px 1px"><A 
+class=left_menu_a href="http://www.asp163.org/Folder5-1.html">单片机</A></DIV>
+<DIV class=left_menu_css 
+style="PADDING-LEFT: 20px; BACKGROUND: url(/images/folder/close.gif) no-repeat 0px 1px"><A 
+class=left_menu_a href="http://www.asp163.org/SoftFolder6-1.html">资源下载</A></DIV>
+<DIV class=left_menu_css 
+style="PADDING-LEFT: 20px; BACKGROUND: url(/images/folder/close.gif) no-repeat 0px 1px"><A 
+class=left_menu_a 
+href="http://www.asp163.org/Folder7-1.html">生活</A></DIV></DIV></DIV>
+<DIV class=left_box>
+<DIV class=left_title>·热门文章</DIV>
+<DIV class=left_box_list>
+<UL style="FONT-SIZE: 12px">
+  <LI>1 <A title=asp/ajax/post/gb2312特殊字符出现乱码完美解决方法 
+  href="http://www.asp163.org/File277.html">asp/ajax/post/gb2312特殊字符出现乱码完美解决方法</A>
+  <LI>2 <A title=城市选择层代码及jQuery与Prototype共存解决方案 
+  href="http://www.asp163.org/File233.html">城市选择层代码及jQuery与Prototype共存解决方案</A>
+  <LI>3 <A title=判断客户端是否禁用javascript、cookie 
+  href="http://www.asp163.org/File299.html">判断客户端是否禁用javascript、cookie</A>
+  <LI>4 <A title="如何让 jQuery 和 prototype 共存" 
+  href="http://www.asp163.org/File235.html">如何让 jQuery 和 prototype 共存</A>
+  <LI>5 <A title=控制HTML元素的显示与隐藏——display和visibility 
+  href="http://www.asp163.org/File305.html">控制HTML元素的显示与隐藏——display和visibility</A>
+  <LI>6 <A title=javascript控制页面中所有input的样式 
+  href="http://www.asp163.org/File380.html">javascript控制页面中所有input的样式</A>
+  <LI>7 <A title=JavaScript分割字符串 
+  href="http://www.asp163.org/File238.html">JavaScript分割字符串</A>
+  <LI>8 <A title=时间选择器 href="http://www.asp163.org/File249.html">时间选择器</A>
+  <LI>9 <A title=div随滚动条移动 
+  href="http://www.asp163.org/File242.html">div随滚动条移动</A></LI></UL></DIV><!-- left_box_list end --></DIV><!-- left_box end -->
+<DIV class=left_box>
+<DIV class=left_title>·热门评论</DIV>
+<DIV class=left_box_list>
+<UL style="FONT-SIZE: 12px">
+  <LI>1 <A title=据说学会这首歌，结婚成功率会翻倍 
+  href="http://www.asp163.org/File472.html">据说学会这首歌，结婚成功率会翻倍</A>
+  <LI>2 <A title="超给力网络新曲 I just had sex" 
+  href="http://www.asp163.org/File470.html">超给力网络新曲 I just had sex</A>
+  <LI>3 <A title="第二次量产成功：KingSton DT 101 G2 8G的量产经历" 
+  href="http://www.asp163.org/File449.html">第二次量产成功：KingSton DT 101 G2 
+  8G的量产经历</A>
+  <LI>4 <A title=去掉MSN2009广告的方法 
+  href="http://www.asp163.org/File426.html">去掉MSN2009广告的方法</A>
+  <LI>5 <A title=旭日阳刚翻唱汪峰《当我想你的时候》 
+  href="http://www.asp163.org/File401.html">旭日阳刚翻唱汪峰《当我想你的时候》</A>
+  <LI>6 <A title=sql2000中通配符关于模糊查询时中括号问题 
+  href="http://www.asp163.org/File390.html">sql2000中通配符关于模糊查询时中括号问题</A>
+  <LI>7 <A title=放弃QQ，选择MSN 
+  href="http://www.asp163.org/File381.html">放弃QQ，选择MSN</A>
+  <LI>8 <A title=详解ASP分页教程,透彻掌握ASP分页技术 
+  href="http://www.asp163.org/File376.html">详解ASP分页教程,透彻掌握ASP分页技术</A>
+  <LI>9 <A title=网站服务器Win2003系统网络安全设置全攻略 
+  href="http://www.asp163.org/File356.html">网站服务器Win2003系统网络安全设置全攻略</A></LI></UL></DIV><!-- left_box_list end --></DIV><!-- left_box end --></DIV><!-- 右边栏 -->
+<DIV id=right>
+<DIV class=right_pos><A href="http://www.asp163.org/">首页</A> &gt; <A 
+href="http://www.asp163.org/Folder2-1.html">技术文档</A> &gt; <A 
+href="http://www.asp163.org/Folder11-1.html">WEB开发</A> &gt; <A 
+href="http://www.asp163.org/Folder23-1.html">JavaScript</A> &gt; 
+getElementById与getElementsByName与getElementsByTagName总结</DIV>
+<DIV class=contMain>
+<H1 
+id=artibodyTitle>getElementById与getElementsByName与getElementsByTagName总结</H1>
+<DIV class=artInfo>时间:2011-5-1 22:21:01 来源:www.asp163.org 作者:大头爸爸 点击:52次 </DIV>
+<DIV class=articleBody><SPAN class=top11>
+<P>1.getElementById</P>
+<P>作用：一般页面里ID是唯一的，用于准备定为一个元素<BR>语法： document.getElementById(id)<BR>参数：id 
+:必选项为字符串(String)<BR>返回值：对象; 返回相同id对象中的第一个，按在页面中出现的次序,如果无符合条件的对象，则返回 null</P>
+<P>代码<BR>example：document.getElementById("id1").value;</P>
+<P><BR>2.getElementsByName</P>
+<P>作用：按元素的名称查找，返回一个同名元素的数组<BR>语法： document.getElementsByName(name)<BR>参数：name 
+:必选项为字符串(String)<BR>返回值：数组对象; 如果无符合条件的对象，则返回空数组，按在页面中出现的次序</P>
+<P>代码<BR>document.getElementsByName("name1")[0].value;<BR>document.getElementsByName("name1")[1].value;</P>
+<P>3.getElementsByTagName</P>
+<P>作用：按HTML标签名查询，返回一个相同标签元素的数组<BR>语法： object.getElementsByTagName(tagname) 
+object可以是document或event.srcElement.parentElement等<BR>参数：tagname:必选项为字符串(String)，根据HTML标签检索。<BR>返回值：数组对象; 
+如果无符合条件的对象，则返回空数组，按在页面中出现的次序</P>
+<P>代码<BR>example：document.getElementsByTagName("p")[0].childNodes[0].nodeValue;<BR>document.getElementsByTagName("p")[1].childNodes[0].nodeValue</P>
+<P>注意getElementsByName有s在里面<BR>document.getElementById()可以控制某个id的tag<BR>document.getElementsByName()，返回的是一个具有相同 
+name 属性的元素的集合，而不是某个，注意有“s”。<BR>而 document.getElementsByTagName() 返回的是一组相同 TAG 
+的元素集合。<BR>同一个name可以有多个element，所以用document.getElementsByName("theName"),他return 
+一个collection，引用的时候要指名index<BR>var test = 
+document.getElementsByName('testButton')[0];<BR>id那个，是唯一的</P>
+<P>getElementsByName返回的是所有name为指定值的所有元素的集合</P>
+<P>“根据 NAME 标签属性的值获取对象的集合。”<BR>集合比数组要松散的多, 集合里每个子项的类型可以不同, 集合只是把某些元素放在一起作为一类来使用, 
+相比之下数组就严格多了, 每个子项都是统一的类型. getElementsByName, getElementsByTagName, 
+formName.elements 
+这类方法所得到的结果都是集合.<BR>例1：<BR>&lt;html&gt;<BR>&lt;head&gt;<BR>&lt;title&gt;fish&lt;/title&gt;<BR>&lt; 
+language="java"&gt;<BR>get(){<BR>var 
+xx=getElementById("bbs")<BR>alert("标记名称："+xx.tagName);<BR>}<BR>getElementName(){<BR>var 
+ele = getElementsByName("happy");<BR>alert("无素为happy的个数：" + 
+ele.length);<BR>}<BR>&lt;/&gt;&lt;/head&gt;<BR>&lt;body&gt;<BR>&lt;h2 
+id="bbs"&gt;获取文件指定的元素&lt;/h2&gt;<BR>&lt;hr&gt;<BR>&lt;form&gt;<BR>&lt;input 
+type="button" ="get()" ="获取标题标记"&gt;<BR>&lt;input type="button" name="happy" 
+="getElementName()" ="click "&gt;&lt;input type="button" name="happy" 
+="getElementName()" ="click "&gt;&lt;input type="button" name="happy" 
+="getElementName()" ="click "&gt;&lt;input type="button" name="happy" 
+="getElementName()" ="click "&gt;&lt;input type="button" name="happy" 
+="getElementName()" ="click 
+"&gt;<BR>&lt;/form&gt;<BR>&lt;/body&gt;<BR>&lt;/html&gt;</P>
+<P>getElementsByName()这个方法.它对一个和多个的处理是一样的,我们可以用:<BR>Temp = 
+getElementsByName('happy')来引用<BR>当Temp只有1个的时候,那么就是Temp[0],有多个的时候,用下标法Temp[i]循环获取<BR>也有例外：<BR>在ie 
+中getElementsByName(“test“)的时候返回的是id=test的object数组，而firefox则返回的是name＝ 
+test的object的数组。<BR>按照w3c的规范应该是返回的是name＝ 
+test的object的数组。<BR>firefox和ie中的getElementByID相同：获取对 ID 
+标签属性为指定值的第一个对象的引用。<BR>注意getElementsByName有s在里面<BR>getElementById()可以控制某个id的tag<BR>getElementsByName()，返回的是一个具有相同 
+name 属性的元素的集合，而不是某个，注意有“s”。</P>
+<P>而 getElementsByTagName() 返回的是一组相同 TAG 的元素集合。</P>
+<P>同一个name可以有多个element，所以用getElementsByName("theName")<BR>他return 
+一个collection，引用的时候要指名index<BR>var test = getElementsByName('testButton')[0];</P>
+<P>id那个，是唯一的<BR>document.getElementsByName:方法可返回带有指定名称的对象的集合。该方法与 
+getElementById() 方法相似，但是它查询元素的 name 属性，而不是 id 属性。另外，因为一个文档中的 name 属性可能不唯一（如 HTML 
+表单中的单选按钮通常具有相同的 name 属性），所有 getElementsByName() 
+方法返回的是元素的数组，而不是一个元素。&lt;html&gt;<BR>&lt;head&gt;<BR>&lt;script 
+type="text/javascript"&gt;<BR>function getElements()<BR>&nbsp; {<BR>&nbsp; var 
+x=document.getElementsByName("myInput");<BR>&nbsp; alert(x.length);<BR>&nbsp; 
+}<BR>&lt;/script&gt;<BR>&lt;/head&gt;<BR>&lt;body&gt;</P>
+<P>&lt;input name="myInput" type="text" size="20" /&gt;&lt;br /&gt;<BR>&lt;input 
+name="myInput" type="text" size="20" /&gt;&lt;br /&gt;<BR>&lt;input 
+name="myInput" type="text" size="20" /&gt;&lt;br /&gt;<BR>&lt;br 
+/&gt;<BR>&lt;input type="button" onclick="getElements()"<BR>value="How many 
+elements named 'myInput'?" /&gt;</P>
+<P>&lt;/body&gt;<BR>&lt;/html&gt;getElementsByTagName() 
+方法可返回带有指定标签名的对象的集合。document.getElementsByTagName(tagname)getElementsByTagName() 
+方法返回元素的顺序是它们在文档中的顺序。如果把特殊字符串 "*" 传递给 getElementsByTagName() 
+方法，它将返回文档中所有元素的列表，元素排列的顺序就是它们在文档中的顺序。注释：传递给 getElementsByTagName() 
+方法的字符串可以不区分大小写。&lt;html&gt;<BR>&lt;head&gt;<BR>&lt;script 
+type="text/javascript"&gt;<BR>function getElements()<BR>&nbsp; {<BR>&nbsp; var 
+x=document.getElementsByTagName("input");<BR>&nbsp; alert(x.length);<BR>&nbsp; 
+}<BR>&lt;/script&gt;<BR>&lt;/head&gt;<BR>&lt;body&gt;</P>
+<P>&lt;input name="myInput" type="text" size="20" /&gt;&lt;br /&gt;<BR>&lt;input 
+name="myInput" type="text" size="20" /&gt;&lt;br /&gt;<BR>&lt;input 
+name="myInput" type="text" size="20" /&gt;&lt;br /&gt;<BR>&lt;br 
+/&gt;<BR>&lt;input type="button" onclick="getElements()"<BR>value="How many 
+input elements?" /&gt;</P>
+<P>&lt;/body&gt;<BR>&lt;/html&gt;可以用 getElementsByTagName() 方法获取任何类型的 HTML 
+元素的列表。例如，下面的代码可获取文档中所有的表：var tables = 
+document.getElementsByTagName("table");<BR>alert ("This document contains " + 
+tables.length + " tables");<BR>如果您非常了解文档的结构，也可以使用 getElementsByTagName() 
+方法获取文档中的一个特定的元素。例如，下面的代码可以获得文档中的第四个段落：var myParagragh = 
+document.getElementsByTagName("p")[3];<BR>不过，我们还是认为，如果您需要操作某个特定的元素，使用 
+getElementById() 方法将更为有效。</P>
+<P><BR>getElementById() 方法可返回对拥有指定 ID 
+的第一个对象的引用。<BR>document.getElementById(id)<BR>HTML DOM 定义了多种查找元素的方法，除了 
+getElementById() 之外，还有 getElementsByName()<BR>和 
+getElementsByTagName()。<BR>不过，如果您需要查找文档中的一个特定的元素，最有效的方法是 
+getElementById()。<BR>在操作文档的一个特定的元素时，最好给该元素一个 id 属性，为它指定一个（在文档中）<BR>唯一的名称，然后就可以用该 
+ID 查找想要的元素。</P>
+<P>&lt;html&gt;<BR>&lt;head&gt;<BR>&lt;script 
+type="text/javascript"&gt;<BR>function getValue()<BR>{<BR>var 
+x=document.getElementById("myHeader")<BR>alert(x.innerHTML)<BR>}<BR>&lt;/script&gt;<BR>&lt;/head&gt;<BR>&lt;body&gt;<BR>&lt;h1 
+id="myHeader" onclick="getValue()"&gt;This is a 
+header&lt;/h1&gt;<BR>&lt;p&gt;Click on the header to alert its 
+value&lt;/p&gt;<BR>&lt;/body&gt;<BR>&lt;/html&gt;</P>
+<P>getElementById() 是一个重要的方法，在 DOM 
+程序设计中，它的使用非常常见。<BR>我们为您定义了一个工具函数，这样您就可以通过一个较短的名字来使用 getElementById() 
+方法了：<BR>function id(x) {<BR>&nbsp; if (typeof x == "string") return 
+document.getElementById(x);<BR>&nbsp; return x;<BR>&nbsp; }<BR>上面这个函数接受元素 ID 
+作为它们的参数。对于每个这样的参数，您只要在使用前编写x=id(x)就可以了。</P>
+<P>id就像身分证号，是唯一的，name就像姓名一样可以同名一个元素定义了id，引用该元素时直接用id属性，而name通常用在form中，且必须由document.form.***而来，也就是说，name属性定义的元素在脚本中是document对象的子对象。name用于form内元素，提交需要id用于form外元素好用因为DOM能直接取得单一元素</P>
+<P>document.getElementById( "id_Number ")得到的是单个元素<BR>document.getElementsByName( 
+"name ")得到的是数组</P>
+<P>id每页只能有一个name可以有多个name有些标签不推荐用它</P>
+<P>取得id:document.getElementById( "idname ")</P>
+<P>取得name：document.getElementsByName( "name ")[0?1?2?3?....]</P>
+<P>表单元素(form input textarea select)与框架元素(iframe 
+frame)用name这些元素都与表单(框架元素作用于form的target)提交有关,在表单的接收页面只接收有name的元素,赋ID的元素通过表单是接收不到值的,你自己可以验证一下.有一个例外:A可以赋name作为锚点,也可以赋ID； 
+只能赋ID不能赋name的元素:(除去与表单相关的元素都只能赋ID)body、li、table、tr、td、th、p、div、span、pre、dl、dt、dd、font、b等等。</P>
+<P>&nbsp;&nbsp;&nbsp; 
+几乎每个做过Web开发的人都问过，到底元素的ID和Name有什么区别阿？为什么有了ID还要有Name呢?而同样我们也可以得到最classical的答案：ID就像是一个人的身份证号码，而Name就像是他的名字，ID显然是唯一的，而Name是可以重复的。</P>
+<P>&nbsp;&nbsp;&nbsp; 上周我也遇到了ID和Name的问题，在页面里输入了一个input 
+type="hidden"，只写了一个ID='SliceInfo'，赋值后submit，在后台用Request.Params[ "SliceInfo 
+"]却怎么也去不到值。后来恍然大悟因该用Name来标示，于是在input里加了个Name= 'SliceInfo '，就一切ok了。</P>
+<P>&nbsp;&nbsp;&nbsp; 
+第一段里对于ID和Name的解答说的太笼统了，当然那个解释对于ID来说是完全对的，它就是Client端HTML元素的Identity。而Name其实要复杂的多，因为Name有很多种的用途，所以它并不能完全由ID来代替，从而将其取消掉。</P>
+<P>&nbsp;&nbsp;&nbsp; 具体用途有：</P>
+<P>&nbsp;&nbsp;&nbsp; 用途1:&nbsp; 
+作为可与服务器交互数据的HTML元素的服务器端的标示，比如input、select、textarea、和button等。我们可以在服务器端根据其Name通过Request.Params取得元素提交的值。<BR>&nbsp;&nbsp;&nbsp; 
+用途2:&nbsp; HTML元素Inputtype='radio'分组，我们知道radio 
+button控件在同一个分组类，check操作是mutex的，同一时间只能选中一个radio，这个分组就是根据相同的Name属性来实现的。<BR>&nbsp;&nbsp;&nbsp; 
+用途3:&nbsp; 建立页面中的锚点，我们知道&lt;a 
+href="URL"&gt;link&lt;/a&gt;是获得一个页面超级链接，如果不用href属性，而改用Name，如：&lt;a 
+name="PageBottom"&gt;&lt;/a&gt;，我们就获得了一个页面锚点。<BR>&nbsp;&nbsp;&nbsp; 用途4:&nbsp; 
+作为对象的Identity，如Applet、Object、Embed等元素。比如在Applet对象实例中，我们将使用其Name来引用该对象。<BR>&nbsp;&nbsp;&nbsp; 
+用途5:&nbsp; 在IMG元素和MAP元素之间关联的时候，如果要定义IMG的热点区域，需要使用其属性usemap，使usemap= "#name 
+"(被关联的MAP元素的Name)。<BR>&nbsp;&nbsp;&nbsp; 用途6:&nbsp; 
+某些特定元素的属性，如attribute，和param。例如为Object定义参数&lt;PARAM NAME="appletParameter" 
+VALUE="value "&gt;。<BR>&nbsp;&nbsp;&nbsp; 
+显然这些用途都不是能简单的使用ID来代替掉的，所以HTML元素的ID和Name的却别并不是身份证号码和姓名这样的区别，它们更本就是不同作用的东西。<BR>&nbsp;&nbsp;&nbsp; 
+当然HTML元素的Name属性在页面中也可以起那么一点ID的作用，因为在DHTML对象树中，我们可以使用document.getElementsByName来获取一个包含页面中所有指定Name元素的对象数组。<BR>&nbsp;&nbsp;&nbsp; 
+在这里顺便说一下，要是页面中有n(n&gt; 
+1)个HTML元素的ID都相同了怎么办？在DHTML对象中怎么引用他们呢？如果我们使用ASPX页面，这样的情况是不容易发生的，因为aspnet进程在处理aspx页面时根本就不允许有ID非唯一，这是页面会被抛出异常而不能被正常的render。要是不是动态页面，我们硬要让ID重复那IE怎么搞呢？<BR>&nbsp;&nbsp;&nbsp; 
+这个时候我们还是可以继续使用document.getElementById获取对象，只不过我们只能获取ID重复的那些对象中在HTMLRender时第一个出现的对象。而这时重复的ID会在引用时自动变成一个数组，ID重复的元素按Render的顺序依次存在于数组中。</P>
+<P>来源：<A 
+href="http://grassland619.blog.163.com/blog/static/14831592200811992952193/" 
+target=_blank>http://grassland619.blog.163.com/blog/static/14831592200811992952193/</A></P>
+<P style="TEXT-INDENT: 2em"><BR></SPAN></P></DIV>
+<DIV class=clear></DIV>
+<DIV class=keywords>本文关键字：
+<LI>getElementById,getElementsByName,getElementsByTagName</LI></DIV>
+<DIV class=func><A class=favorite href="http://www.asp163.org/File544.html#" 
+target=_blank>收藏</A> <A class=foundError 
+href="http://www.asp163.org/File544.html#" target=_blank>挑错</A> <A class=commend 
+href="http://www.asp163.org/File544.html#" target=_blank>推荐</A> <A 
+class=printPage onclick=window.print(); 
+href="http://www.asp163.org/File544.html#">打印</A></DIV>
+<DIV class=clear></DIV><!-- 评论部分 comment start --><!--边框开始-->
+<STYLE>IMG {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none; eisplay: block
+}
+.quanju {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 10px; MARGIN: 0px auto; WIDTH: 672px; PADDING-TOP: 10px
+}
+UNKNOWN {
+	PADDING-LEFT: 0px
+}
+.biankung {
+	BORDER-RIGHT: #c0c0c0 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #c0c0c0 1px solid; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; BORDER-LEFT: #c0c0c0 1px solid; WIDTH: 100%; PADDING-TOP: 10px; BORDER-BOTTOM: #c0c0c0 1px solid
+}
+.chakan {
+	FONT-SIZE: 12px; MARGIN-BOTTOM: 0px; COLOR: #00ccff
+}
+.chakan A {
+	COLOR: #3366cc
+}
+.chakan A:hover {
+	COLOR: #f33; TEXT-DECORATION: underline
+}
+.pl {
+	WIDTH: 100%
+}
+.pl_1 {
+	MARGIN-TOP: 10px; FONT-SIZE: 12px; FLOAT: left; PADDING-BOTTOM: 10px; WIDTH: 360px; COLOR: #cccccc
+}
+.pl_2 {
+	FONT-SIZE: 12px; FLOAT: right; MARGIN: 4px 5px 0px 0px; WIDTH: 245px; PADDING-TOP: 2px
+}
+.biaodan {
+	MARGIN: 10px 0px; WIDTH: 100%; HEIGHT: 70px
+}
+.biaoqing {
+	PADDING-BOTTOM: 0px; WIDTH: 100%; PADDING-TOP: 10px
+}
+.biaoqing IMG {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 2px; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 4px; VERTICAL-ALIGN: middle
+}
+UNKNOWN {
+	PADDING-RIGHT: 0px
+}
+.biaoqing UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+}
+.biaoqing UL LI {
+	FLOAT: left; WIDTH: 50px
+}
+.fbpl {
+	MARGIN: 0px 0px 10px 10px
+}
+.ipt-txt {
+	BORDER-RIGHT: #bbb 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #666 1px solid; PADDING-LEFT: 5px; FONT-SIZE: 12px; PADDING-BOTTOM: 4px; BORDER-LEFT: #666 1px solid; WIDTH: 99%; LINE-HEIGHT: 15px; MARGIN-RIGHT: 2px; PADDING-TOP: 4px; BORDER-BOTTOM: #bbb 1px solid; HEIGHT: 70px
+}
+#plNum {
+	COLOR: #ff0000
+}
+.hidden {
+	DISPLAY: none
+}
+</STYLE>
+
+<DIV class=quanju>
+<DIV class=biankung><!-- 下面判断javascript脚本是否开启，如果开启则显示评论界面，否则给出提示信息-->
+<DIV id=not_open_js 
+style="PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 10px; MARGIN: 0px auto; WIDTH: 100%; PADDING-TOP: 5px"><SPAN 
+style="FONT-SIZE: 14px; COLOR: #444">对不起，你的浏览器没有打开JavaScript脚本支持，无法使用评论功能！</SPAN> 
+</DIV><!-- 判断javascript脚本是否开启 over -->
+<DIV class=hidden id=pldiv>
+<DIV class=chakan><A href="http://www.asp163.org/comment-544-1.html" 
+target=_blank>查看所有评论 共 <SPAN id=plNum>0</SPAN> 条</A></DIV><INPUT id=appraise 
+type=hidden value=0><!-- 评价 --> <INPUT id=face type=hidden value=1> <INPUT 
+id=fileid type=hidden value=544> 
+<DIV class=pl>
+<DIV class=pl_1>请自觉遵守互联网相关政策法规，严禁发布色情、暴力、反动言论</DIV><!--评论开始-->
+<DIV class=pl_2>评价: <INPUT id=dcmp-stand-neu 
+onclick="$('appraise').value=this.value;" type=radio CHECKED value=0 
+name=feedbacktype_radio> <LABEL for=dcmp-stand-neu><IMG 
+src="getElementById与getElementsByName与getElementsByTagName总结 From JavaScript by 大头爸爸文档中心 - www_asp163_org.files/cmt-neu.gif">中立</LABEL> 
+<INPUT id=dcmp-stand-good onclick="$('appraise').value=this.value;" type=radio 
+value=1 name=feedbacktype_radio> <LABEL for=dcmp-stand-good><IMG 
+src="getElementById与getElementsByName与getElementsByTagName总结 From JavaScript by 大头爸爸文档中心 - www_asp163_org.files/cmt-good.gif">好评</LABEL> 
+<INPUT id=dcmp-stand-bad onclick="$('appraise').value=this.value;" type=radio 
+value=2 name=feedbacktype_radio> <LABEL for=dcmp-stand-bad><IMG 
+src="getElementById与getElementsByName与getElementsByTagName总结 From JavaScript by 大头爸爸文档中心 - www_asp163_org.files/cmt-bad.gif">差评</LABEL> 
+</DIV><!--评论结束-->
+<DIV class=clear></DIV>
+<DIV><TEXTAREA class=ipt-txt id=msg></TEXTAREA></DIV></DIV><!-- pl over --><!--表情开始-->
+<DIV class=biaoqing>
+<UL>
+  <LI>表情: </LI>
+  <LI><INPUT onclick="$('face').value=this.value;" type=radio CHECKED value=1 
+  name=face_radio><IMG 
+  src="getElementById与getElementsByName与getElementsByTagName总结 From JavaScript by 大头爸爸文档中心 - www_asp163_org.files/ico-mood-1.gif"></LI>
+  <LI><INPUT onclick="$('face').value=this.value;" type=radio value=2 
+  name=face_radio><IMG 
+  src="getElementById与getElementsByName与getElementsByTagName总结 From JavaScript by 大头爸爸文档中心 - www_asp163_org.files/ico-mood-2.gif"></LI>
+  <LI><INPUT onclick="$('face').value=this.value;" type=radio value=3 
+  name=face_radio><IMG 
+  src="getElementById与getElementsByName与getElementsByTagName总结 From JavaScript by 大头爸爸文档中心 - www_asp163_org.files/ico-mood-3.gif"></LI>
+  <LI><INPUT onclick="$('face').value=this.value;" type=radio value=4 
+  name=face_radio><IMG 
+  src="getElementById与getElementsByName与getElementsByTagName总结 From JavaScript by 大头爸爸文档中心 - www_asp163_org.files/ico-mood-4.gif"></LI>
+  <LI><INPUT onclick="$('face').value=this.value;" type=radio value=5 
+  name=face_radio><IMG 
+  src="getElementById与getElementsByName与getElementsByTagName总结 From JavaScript by 大头爸爸文档中心 - www_asp163_org.files/ico-mood-5.gif"></LI>
+  <LI><INPUT onclick="$('face').value=this.value;" type=radio value=6 
+  name=face_radio><IMG 
+  src="getElementById与getElementsByName与getElementsByTagName总结 From JavaScript by 大头爸爸文档中心 - www_asp163_org.files/ico-mood-6.gif"></LI>
+  <LI><INPUT onclick="$('face').value=this.value;" type=radio value=7 
+  name=face_radio><IMG 
+  src="getElementById与getElementsByName与getElementsByTagName总结 From JavaScript by 大头爸爸文档中心 - www_asp163_org.files/ico-mood-7.gif"> 
+  </LI>
+  <LI><BUTTON id=go 
+  style="PADDING-BOTTOM: 0px; FONT: 12px Verdana,Arial,Tahoma; WIDTH: 70px; PADDING-TOP: 3px; HEIGHT: 25px" 
+  onclick=goCheck()>发表评论</BUTTON> </LI></UL>
+<DIV class=clear></DIV></DIV><!--表情结束--></DIV><!-- #pldiv over --></DIV><!-- biankung over --></DIV><!-- quanju over -->
+<SCRIPT>
+document.getElementById("not_open_js").style.display='none';
+document.getElementById("pldiv").style.display='block';
+/////检查数据并提交表单/////
+function goCheck(){
+  var appraise=$F('appraise');//评价
+  var face=$F('face');//表情
+  var fileid=$F('fileid');//文章索引
+  var msg=$F('msg');//评论
+  if(msg=='') return mmReturnErr('msg','发表内容不能为空！');
+  if(mmLength(msg)>800) return mmReturnErr('msg','发表内容太多！');
+  ////文本: 格式化字符
+  msg=msg.delSpace();
+  msg=msg.HtmlTextEncode();
+  msg=encodeURIComponent(escape(msg));
+  var varArr=["fileid","appraise","face","msg"];
+  var valArr=[fileid,appraise,face,msg];
+  $('go').disabled=true;
+  mmAjaxUpdater('myRun/SavePingLun.asp',createQueryString(varArr,valArr));
+}
+//////提取某文章数据评论数//////
+function GetPingLunNum(fileid){mmAjaxUpdater('myRun/PingLunNum.asp?fileid='+fileid,'','get','plNum');}
+GetPingLunNum(544);
+</SCRIPT>
+<!--边框结束--><!-- comment end -->
+<DIV class=clear></DIV><!-- otherReading start -->
+<DIV class=otherReading>
+<DIV class="box2 fl">
+<DIV class=inner>
+<DIV class=t id=otherRead>■ 相关文章</DIV></DIV>
+<UL class=list3 style="MARGIN-LEFT: -4px">
+  <LI><A title=getElementById与getElementsByName与getElementsByTagName总结 
+  href="http://www.asp163.org/File544.html">getElementById与getElementsByName与...</A></LI>
+  <LI><A title=利用WebBrowser彻底解决Web打印问题（包括后台打印） 
+  href="http://www.asp163.org/File540.html">利用WebBrowser彻底解决Web打印问题（...</A></LI>
+  <LI><A title=歌词转换器:Lrc格式转换为js格式 
+  href="http://www.asp163.org/File424.html">歌词转换器:Lrc格式转换为js格式</A></LI>
+  <LI><A title=歌词转换器:Lrc格式转换为Smi格式 
+  href="http://www.asp163.org/File423.html">歌词转换器:Lrc格式转换为Smi格式</A></LI>
+  <LI><A title=一个简单的下拉菜单 
+  href="http://www.asp163.org/File415.html">一个简单的下拉菜单</A></LI></UL></DIV>
+<DIV class="box2 fr">
+<DIV class=inner>
+<DIV class=t>■ 热点内容</DIV></DIV>
+<UL class=list3 style="MARGIN-LEFT: -4px">
+  <LI><A title=asp/ajax/post/gb2312特殊字符出现乱码完美解决方法 
+  href="http://www.asp163.org/File277.html">asp/ajax/post/gb2312特殊字符出现乱码...</A></LI>
+  <LI><A title=城市选择层代码及jQuery与Prototype共存解决方案 
+  href="http://www.asp163.org/File233.html">城市选择层代码及jQuery与Prototype共...</A></LI>
+  <LI><A title=判断客户端是否禁用javascript、cookie 
+  href="http://www.asp163.org/File299.html">判断客户端是否禁用javascript、cooki...</A></LI>
+  <LI><A title="如何让 jQuery 和 prototype 共存" 
+  href="http://www.asp163.org/File235.html">如何让 jQuery 和 prototype 共存</A></LI>
+  <LI><A title=控制HTML元素的显示与隐藏——display和visibility 
+  href="http://www.asp163.org/File305.html">控制HTML元素的显示与隐藏——display...</A></LI></UL></DIV></DIV><!-- otherReading end --></DIV><!-- conMain over --></DIV><!-- right部分结束 --></DIV>
+<DIV class=foot>Copyright &copy; 2009 asp163.org All Rights Reserved. 
+</DIV></DIV><SPAN style="DISPLAY: none">
+<SCRIPT language=javascript 
+src="getElementById与getElementsByName与getElementsByTagName总结 From JavaScript by 大头爸爸文档中心 - www_asp163_org.files/4028089.js" 
+type=text/javascript></SCRIPT>
+<NOSCRIPT><A href="http://www.51.la/?4028089" target=_blank><IMG 
+style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" 
+alt=我要啦免费统计 
+src="getElementById与getElementsByName与getElementsByTagName总结 From JavaScript by 大头爸爸文档中心 - www_asp163_org.files/go.htm"></A></NOSCRIPT> 
+</SPAN></BODY></HTML>

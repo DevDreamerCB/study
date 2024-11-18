@@ -1,0 +1,41 @@
+<!--
+正如您看到的，它仅仅是一个简单的 HTML 表单，
+
+其中带有名为 "users" 的下拉列表，这个列表包含了姓名，
+
+以及与数据库的 "id" 对应的选项值。
+
+表单下面的段落包含了名为 "txtHint" 的 div。
+
+这个 div 用作从 web 服务器检索到的信息的占位符。
+
+当用户选择数据时，执行名为 "showUser()" 的函数。
+
+该函数的执行由 "onchange" 事件触发。
+
+换句话说：每当用户改变下拉列表中的值，就会调用 showUser() 函数。
+-->
+
+<html>
+<head>
+<script src="selectuser.js"></script>
+</head>
+<body>
+
+<form> 
+请选择一个用户:
+<select name="users" onchange="showUser(this.value)">
+<option value="1">刘备</option>
+<option value="2">关羽</option>
+<option value="3">张飞</option>
+<option value="4">蒋干</option>
+<option value="5">吕布</option>
+</select>
+</form>
+
+<p>
+<div id="txtHint"><b>此处列出用户信息.</b></div>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<?php
+header("Cache-Control: no-cache, post-check=0, pre-check=0");
+header("Content-type:text/html;charset=gb2312");
+$con = mysql_connect("localhost","root","sql");
+mysql_select_db("qingzhou", $con);
+mysql_query("set names gb2312 ");
+$userid = $_POST["userid"];
+$username = $_POST["username"];
+$pwd = $_POST["pwd"];
+$sql = "insert into php_admin(userid, username, password) values(";
+$sql = $sql . "'$userid','$username','$pwd')";
+mysql_query($sql);
+$sql1 = "select userid, username, password from php_admin where userid='".$userid."'";
+$RS0 = mysql_query($sql1);
+?>
+<html><head><title>用户信息</title></head>
+<body>
+<table>
+<?php
+while($RS = mysql_fetch_array($RS0))
+{
+?>
+<tr><td><?php echo strval($RS["userid"])?></td>
+<td><?php echo strval($RS["username"])?></td>
+<td><?php echo strval($RS["password"])?></td></tr>
+<?php 
+}
+mysql_close($con);
+$RS=NULL;
+$con =NULL;
+?>
+</table>
+</body>
+</html>

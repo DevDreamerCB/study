@@ -1,0 +1,47 @@
+<?php
+header("Cache-Control: no-cache, post-check=0, pre-check=0");
+header("Content-type:text/html;charset=gb2312");
+
+$con = mysql_connect("localhost","root","sql");
+mysql_select_db("qingzhou", $con);
+mysql_query("set names gb2312 ");
+
+$username = $_POST["username"];
+
+$SQL = "select username,userage from php_admin ";
+
+$SQL=$SQL. "where username = '$username'";
+
+//echo $SQL; die();
+
+$RS0 = mysql_query($SQL); var_dump($RS0); die();
+
+?>
+
+<html>
+<head><title>查询结果</title></head>
+<body>
+<table border=1> 
+<tr>
+<td align=left>&nbsp;姓名</td> 
+<td align=left>&nbsp;年龄</td> 
+</tr>
+<?php
+
+while($RS = mysql_fetch_array($RS0))
+{
+?>
+<tr>
+<td align=left>&nbsp;<?php echo $RS["username"]?></td> 
+<td align=left>&nbsp;<?php echo $RS["userage"]?></td> 
+</tr>
+<?php
+
+}
+mysql_close($con);
+$RS=NULL;
+$con =NULL;
+?>
+</table>
+</body>
+</html>

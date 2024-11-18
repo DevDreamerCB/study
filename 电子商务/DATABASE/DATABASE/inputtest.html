@@ -1,0 +1,10 @@
+<SCRIPT LANGUAGE=javascript>
+function abc(){
+document.all.form1.submit();
+}
+</SCRIPT>
+	
+<form action="inputtest.php" id=form1 name=form1 method="POST">
+	<input type=text id=text1 name=text1>
+	<input type=button value="login" onclick="return abc()">
+</form>

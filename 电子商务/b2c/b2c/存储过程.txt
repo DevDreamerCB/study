@@ -1,0 +1,40 @@
+BEGIN
+DECLARE t_error INTEGER DEFAULT 0;
+DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET t_error=1;
+set @i=0;
+
+SET @cnt = 1+(LENGTH(checkedproduct) - LENGTH(REPLACE(checkedproduct,',','')));
+set @i=1;
+
+START TRANSACTION;
+
+insert into t_order0(ordercode,userid,address,ispay) values(varordercode,varuserid,varaddress,'0');
+
+set @orderid=(select orderid from t_order0 where ordercode=varordercode limit 1);
+
+WHILE @i <=@cnt DO
+
+SET @result = REPLACE(SUBSTRING(SUBSTRING_INDEX(checkedproduct , ',', @i),
+       LENGTH(SUBSTRING_INDEX(checkedproduct , ',', @i -1)) + 1),
+       ',', '');
+SET @i = @i + 1;
+
+SET @result1 = REPLACE(SUBSTRING(SUBSTRING_INDEX(checkedproduct , ',', @i),
+       LENGTH(SUBSTRING_INDEX(checkedproduct , ',', @i -1)) + 1),
+       ',', '');
+SET @i = @i + 1;
+
+insert into t_orderdetail(orderid, productcode, price, purchasenumber, productimage) values(@orderid, @result, (select price from t_product where productcode= @result limit 1), @result1, (select productimage from t_product where productcode= @result0  limit 1));
+update t_product set stocknumber=stocknumber-@result1 where productcode=@result;
+
+END WHILE;
+
+update t_order0 set orderprice = (select sum(purchasenumber*price) from t_orderdetail where orderid=@orderid) where ordercode=varordercode;
+
+IF t_error = 1 THEN
+	ROLLBACK;
+ELSE
+	COMMIT;
+END IF;
+
+END

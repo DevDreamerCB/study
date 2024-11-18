@@ -1,0 +1,49 @@
+<html id="htmlid">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>新建网页 1</title>
+<SCRIPT LANGUAGE=javascript>
+<!--
+function x(){
+ var e=document.getElementsByTagName("h1");
+  alert(e[0].style.fontFamily);
+}
+function   onclick1() 
+{ 
+document.write("dd");
+} 
+function   onclick2() 
+{ 
+document.getElementById("b2").value="dd";
+var x=document.getElementsByName("b2");
+x[0].value="ddd";
+} 
+function   onclick3() 
+{ 
+	alert(document.getElementById("htmlid").innerHTML);
+document.getElementById("htmlid").innerHTML="dd";
+	alert(document.getElementById("bodyid").innerHTML);
+document.getElementById("bodyid").innerHTML="dd";
+} 
+//-->
+</SCRIPT>
+</head>
+
+<body id="bodyid">
+	
+<script>
+<!--	
+
+//-->
+</script>
+
+<form id="form1">
+	<input  id="b1" name="b1" type="button" value="test1"  onclick="return onclick1()" >
+	<input id="b2" name="b2" type="button"  value="test2" onclick="return onclick2()" >
+	<input id="b3" name="b3" type="button"  value="test3" onclick="return onclick3()" >
+	</form>
+	<h1 style="font-family:'隶书'" onClick="x()">点击改变字体</h1>
+</body>
+
+</html>

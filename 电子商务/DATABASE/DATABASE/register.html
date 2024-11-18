@@ -1,0 +1,97 @@
+<html>
+<head>
+	
+	<SCRIPT LANGUAGE=javascript>
+		var xmlHttp;
+		
+		function stateChanged() 
+		{ 
+			var control=[];
+			var text;
+		if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+		 { 
+		 	text = xmlHttp.responseText;
+		  if (text=="") {
+		  	document.form1.submit();
+		  }
+		 	control=text.split(";")
+		  document.getElementById("txtHint").innerHTML= control[1];
+		  document.getElementById(control[0]).focus();
+		 } 
+		}	
+		
+		function GetXmlHttpObject()
+		{
+		var xmlHttp=null;
+		try
+		 {
+		 // Firefox, Opera 8.0+, Safari
+		 xmlHttp=new XMLHttpRequest();
+		 }
+		catch (e)
+		 {
+		 // Internet Explorer
+		 try
+		  {
+		  xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+		  }
+		 catch (e)
+		  {
+		  xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		 }
+		return xmlHttp;
+		}		
+		
+		function abc()
+		{
+  		var phone = document.form1.usermobile.value;
+  		var email = document.form1.useremail.value;
+    	if(!(/^1[3456789]\d{9}$/.test(phone)))
+    	{ 
+        alert("手机号码不合法，请重新输入"); 
+        document.form1.usermobile.focus();
+        return false; 
+			}
+
+    	if(email.indexOf("@") == -1)
+    	{ 
+        alert("邮箱不合法，请重新输入"); 
+        document.form1.useremail.focus();
+        return false; 
+			}
+			//document.form1.submit();
+			//return;
+			xmlHttp=GetXmlHttpObject();
+			
+			var url="getinfo.php";
+			url=url+"?userid="+document.form1.userid.value;
+			url=url+"&usermobile="+document.form1.usermobile.value;
+			url=url+"&useremail="+document.form1.useremail.value;
+			url=url+"&sid="+Math.random();
+			xmlHttp.onreadystatechange=stateChanged ;
+			xmlHttp.open("GET",url,true);
+			xmlHttp.send(null);
+						
+			return
+		}
+	</SCRIPT>
+	<title></title></head>
+<body>
+<form name=form1 method=post name=adminform action="registeruser.php">
+<table border=2>
+<tr><td>用户id:</td><td><input type=text id=userid name=userid value></td></tr>
+<tr><td>密码：</td><td><input type=password name=password value></td></tr>
+<tr><td>用户姓名：</td><td><input type=text name=username value></td></tr>
+<tr><td>年龄：</td><td><input type=text name=userage value></td></tr>
+<tr><td>手机号：</td><td><input type=text id=usermobile name=usermobile value></td></tr>
+<tr><td>邮箱：</td><td><input type=text id=useremail name=useremail value></td></tr>
+<tr><td>
+	<input type=button value="注册" onclick="return abc();">
+	<p><span id="txtHint" name="txtHint"></span></p>
+</td></tr>
+</table>
+</form>
+
+</body>
+</html>

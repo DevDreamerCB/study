@@ -1,0 +1,24 @@
+
+<SCRIPT LANGUAGE=javascript>
+<!--
+function abc(str1) {
+//alert('pp');
+var str;
+
+var str=str1;
+alert(str);
+var myreg=/^[1][3,4,5,7,8,9][0-9]{9}$/;
+if (!myreg.test(str)) {
+    alert("请填写正确的手机号码");
+} else {
+    document.form1.submit();
+}     
+
+}
+//-->
+</SCRIPT>
+
+<form id=form1 name=form1 action="userinput.php" method=post>
+电话：<input type=text id=mobile name=mobile><br>
+<input type=button id=button1 name=button1 value="保存" onclick="return abc(document.form1.mobile.value);">
+</form>

@@ -1,0 +1,72 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>dfasdfsa</title>
+<script language="JavaScript">
+<!--
+function FP_preloadImgs() {//v1.0
+ var d=document,a=arguments; if(!d.FP_imgs) d.FP_imgs=new Array();
+ for(var i=0; i<a.length; i++) { d.FP_imgs[i]=new Image; d.FP_imgs[i].src=a[i]; }
+}
+
+function FP_swapImg() {//v1.0
+ var doc=document,args=arguments,elm,n; doc.$imgSwaps=new Array(); for(n=2; n<args.length;
+ n+=2) { elm=FP_getObjectByID(args[n]); if(elm) { doc.$imgSwaps[doc.$imgSwaps.length]=elm;
+ elm.$src=elm.src; elm.src=args[n+1]; } }
+}
+
+function FP_getObjectByID(id,o) {//v1.0
+ var c,el,els,f,m,n; if(!o)o=document; if(o.getElementById) el=o.getElementById(id);
+ else if(o.layers) c=o.layers; else if(o.all) el=o.all[id]; if(el) return el;
+ if(o.id==id || o.name==id) return o; if(o.childNodes) c=o.childNodes; if(c)
+ for(n=0; n<c.length; n++) { el=FP_getObjectByID(id,c[n]); if(el) return el; }
+ f=o.forms; if(f) for(n=0; n<f.length; n++) { els=f[n].elements;
+ for(m=0; m<els.length; m++){ el=FP_getObjectByID(id,els[n]); if(el) return el; } }
+ return null;
+}
+// -->
+</script>
+</head>
+
+<body topmargin="1" leftmargin="1" marginwidth="1" text="#00FFFF" bgcolor="#008000" onload="FP_preloadImgs(/*url*/'button26.jpg',/*url*/'button27.jpg')">
+
+<div style="position: absolute; width: 100px; height: 100px; z-index: 1" id="layer1" >
+　adfdsafsafasd
+</div>
+
+<p>
+<iframe name="I1"  width="772" height="260">浏览器不支持嵌入式框架，或被配置为不显示嵌入式框架。</iframe></p>
+
+<table border="1" width="100%" id="table1">
+<caption [align="align"] [valign="valign"]>dfasdfsa
+</caption>
+	<tr>
+		<td>　</td>
+		<td>　</td>
+	</tr>
+	<tr>
+		<td>　</td>
+		<td>　</td>
+	</tr>
+</table>
+<p>nihao <BR>hello</p>
+<p><center>  也是</center></p>
+<H1>这是一级标题</H1>
+<form method="POST" action="--WEBBOT-SELF--">
+	<!--webbot bot="SaveResults" U-File="C:\Program Files\Apache Group\Apache2\phpdocs\_private\form_results.csv" S-Format="TEXT/CSV" S-Label-Fields="TRUE" -->
+	<p><input type="button" value="按钮" name="B3"><input type="submit" value="提交" name="B1"><input type="reset" value="重置" name="B2"></p>
+</form>
+<p>
+<img border="0" id="img1" src="button25.jpg" height="20" width="100" alt="按钮文本" onmouseover="FP_swapImg(1,0,/*id*/'img1',/*url*/'button26.jpg')" onmouseout="FP_swapImg(0,0,/*id*/'img1',/*url*/'button25.jpg')" onmousedown="FP_swapImg(1,0,/*id*/'img1',/*url*/'button27.jpg')" onmouseup="FP_swapImg(0,0,/*id*/'img1',/*url*/'button26.jpg')" fp-style="fp-btn: Border Bottom 4; fp-font" fp-title="按钮文本"></p>
+<select Name="name" size=2>
+			<option value=”value1”>Item1
+			<Option value=”value2”>Item2
+			<Option Value=”value3”><selected>Item3
+
+	</select>
+<TextArea cols=20 Name="name" Rows=13>adsfafafdasdfdsafadsfads </TextArea>
+</body>
+
+</html>

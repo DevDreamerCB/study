@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="gb2312"?> 
+<CATALOG>
+<PERSON>
+<ID>1</ID> 
+<NAME>刘备</NAME> 
+<AGE>45</AGE> 
+<HOMETOWN>四川</HOMETOWN> 
+<JOB>主公</JOB> 
+</PERSON>
+ <PERSON>
+  <ID>2</ID> 
+  <NAME>关羽</NAME> 
+  <AGE>44</AGE> 
+  <HOMETOWN>山东</HOMETOWN> 
+  <JOB>忠臣</JOB> 
+  </PERSON>
+  <PERSON>
+  <ID>3</ID> 
+  <NAME>张飞</NAME> 
+  <AGE>43</AGE> 
+  <HOMETOWN>山东</HOMETOWN> 
+  <JOB>忠臣</JOB> 
+  </PERSON>
+  <PERSON>
+  <ID>4</ID> 
+  <NAME>蒋干</NAME> 
+  <AGE>40</AGE> 
+  <HOMETOWN>江苏</HOMETOWN> 
+  <JOB>内奸</JOB> 
+  </PERSON>
+  <PERSON>
+  <ID>5</ID> 
+  <NAME>吕布</NAME> 
+  <AGE>39</AGE> 
+  <HOMETOWN>陕西</HOMETOWN> 
+  <JOB>反贼</JOB> 
+  </PERSON>
+</CATALOG>

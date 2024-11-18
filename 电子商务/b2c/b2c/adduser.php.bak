@@ -1,0 +1,18 @@
+<html>
+<?php
+
+header("Cache-Control: no-cache, post-check=0, pre-check=0");
+header("Content-type:text/html;charset=gb2312");
+?>
+
+
+<body>
+<form>
+<input type=text name=userid><br>
+<input type=text name=username><br>
+<input type=password name=password><br>
+<input type=submit name=±£´æ>
+</form>
+</body>
+
+</html>

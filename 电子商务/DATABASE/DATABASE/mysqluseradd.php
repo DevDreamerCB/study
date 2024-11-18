@@ -1,0 +1,293 @@
+<?php
+header("Cache-Control: no-cache, post-check=0, pre-check=0");
+header("Content-type:text/html;charset=gb2312");
+
+$mode=$_REQUEST["viewmode"];
+if ($mode=="") {
+	$viewmode=1;
+}
+else
+{
+	$viewmode=intval($viewmode);
+}	
+
+$userid="";
+$currentpage=$_GET["currentpage"];
+if ($currentpage=="") {$currentpage=$_POST["currentpage"];}
+
+//echo $currentpage;
+
+$selname=$_REQUEST["selname"];
+
+//$Conn = new COM("ADODB.Connection");
+$Conn = mysql_connect("localhost","root","sql");
+
+//$MM_Conn_STRING = "DRIVER={Microsoft Access Driver (*.mdb)}; DBQ=" . realpath("DATA/qingzhou.mdb");
+
+//$Conn->Open($MM_Conn_STRING);
+
+//$RS =new COM("ADODB.RecordSet");//数据集
+mysql_select_db("qing_zhou", $Conn);
+mysql_query("set names gb2312 ");
+
+if (strval($_REQUEST["btnsav"]) <> "") {
+//	$userid = "'" . str_replace(trim($_REQUEST["userid"]),"'","''") . "',";
+//	$username = "'" . str_replace(trim($_REQUEST["username"]),"'","''") . "',";
+
+	$userid =  "'" .trim($_REQUEST["userid"]). "',";
+	$username =  "'" .trim($_REQUEST["username"]). "',";
+	$pwd =  "'" .trim($_REQUEST["pwd"]). "'";
+
+	$btn_update=$_REQUEST["btn_update"];
+
+	$SQL="select * from php_admin where userid=" . $userid;
+	$SQL=substr($SQL,0,strlen($SQL)-1);
+	
+	//$RS->open($SQL,$Conn,1,3);//执行语句,返回记录集
+     mysql_query($SQL);
+	//$rcount=$RS->RecordCount;
+	$rcount = mysql_affected_rows();
+	$RS->Close;
+	if ($rcount==0) {
+		
+		$SQL = "insert into php_admin(userid,username,password) ";
+		$SQL = $SQL . "values(" . $userid . $username . $pwd . ")";
+//		$SQL=substr($SQL,0,strlen($SQL)-1);
+//		echo $SQL;
+	}
+	else
+	{
+		$SQL = "update php_admin set username='" . substr($username,1,strlen($username)-1);
+		if ($pwd<>"") {
+		$SQL = $SQL . " password=" .$pwd .  " where userid=" . $userid;
+		}
+		$SQL=substr($SQL,0,strlen($SQL)-1);
+	}
+	//$Conn->Execute($SQL);
+	mysql_query($SQL);
+	
+	header("Status: 303 See Other"); 
+	//ECHO strval($currentpage)."DFDFD";
+	//DIE();
+	header("location:mysql.php?currentpage=" . strval($currentpage) . "&selname=" . strval($selname));
+}
+
+	if ($_REQUEST["isMDF"] == "1") {
+		$userid = $_REQUEST["userid"];
+
+		$SQL = "select * from php_admin where userid='" . $userid . "'";
+		//$RS->open($SQL,$Conn,1,3);//执行语句,返回记录集
+		$RS0=mysql_query($SQL);
+		$RS = mysql_fetch_array($RS0);
+		if (mysql_affected_rows()>0) {
+			$fff ="A";
+			//$userid = strval($RS->Fields["userid"]);
+			//$username = strval($RS->Fields["username"]);
+			// pwd = rs.Fields("passwd")
+			$userid = strval($RS["userid"]);
+			$username = strval($RS["username"]);
+		}
+		else {
+			$fff="B";
+		}
+		$RS->Close;
+	}
+echo $userid ;
+if ($userid=="") {
+	$SQL = "select * from php_admin";
+	$userlist="";
+	//$RS->open($SQL,$Conn,1,3);//执行语句,返回记录集
+	$rs=mysql_query($SQL);
+	if (mysql_affected_rows()>0) {
+			for ($i=0; $i<=$rs->RecordCount-1; $i++) {
+				$userlist = strval($userlist) . strval($rs->Fields["userid"]) . "|";
+				$rs->MoveNext;
+			}
+	}
+	$RS->Close;
+}
+else
+{
+	$SQL = "select username,password from php_admin where userid='". strval($userid) ."'";
+	//$RS->open($SQL,$Conn,1,3);//执行语句,返回记录集
+ 
+	//if (!($rs->EOF)) {
+		$RS0=mysql_query($SQL);
+		$RS = mysql_fetch_array($RS0);
+		if (mysql_affected_rows()>0) {
+		//$username=strval($RS->Fields["username"]);
+		//$password=strval($RS->Fields["password"]);
+		$username=strval($RS["username"]);
+		$password=strval($RS["password"]);
+
+	}	
+	$rs->Close;
+}
+
+$RS=NULL;
+?>
+
+<html>
+<head>
+<META HTTP-EQUIV="Content-Type" Content="text/html; Charset=gb2312">
+<title>
+	<?php if ($userid <> "") {?>
+	用户管理-修改
+	<?php } else {?>
+	用户管理-新增
+	<?php }?>
+</title>
+<style>
+<!--
+font{font-family:宋体; font-size:9pt}
+.font1{font-family: "宋体";font-size:14.3px}
+.font2{font-family:宋体; font-size:9pt;line-height:14pt}
+td{font-family:宋体; font-size:9pt}
+a {text-decoration:none}
+-->
+</style>
+<SCRIPT ID=clientEventHandlersJS LANGUAGE=javascript>
+<!--
+function form1_onsubmit() {
+	if (document.form1.userid.value == ""){
+		alert("请输入用户名！");
+		document.form1.userid.focus();
+		return false;
+	}
+	if (document.form1.userid.value.indexOf("|")>=0){
+		alert("用户名中不能包含'|'特殊字符！");
+		document.form1.userid.focus();
+		return false;
+	}
+	<?php if ($fff<>"A") {?>
+	userid=document.form1.userid.value;
+	if(document.form1.userlist.value.indexOf(userid)>0){
+		alert("此用户代码已经存在，请重新输入！");
+		document.form1.userid.focus();
+		document.form1.userid.select();
+		return false;
+	}
+	<?php }?>
+	
+	if(document.form1.username.value == ""){
+		alert("请输入真实姓名！");
+		document.form1.username.focus();
+		return false;
+	}
+  <?php if ($_REQUEST["btn_update"] =="y") {?>
+	if(document.form1.pwd.value !=document.form1.pwd1.value){
+	    alert("您修改的密码不正确！");
+		document.form1.pwd.focus();
+		return false;
+	}
+	<?php } else {?>
+	if(document.form1.pwd.value == ""){
+		alert("用户密码不能为空！");
+		document.form1.pwd.focus();
+		return false;
+	}
+	else if (document.form1.pwd.value.length < 4){
+		alert("密码不能小于4位！");
+		document.form1.pwd.focus();
+		return false;
+	}
+	else{
+		if(document.form1.pwd.value != document.form1.pwd1.value){
+			alert("您两次输入的密码不同，请确认！");
+			document.form1.pwd.focus();
+			return false;
+		}
+	}
+<?php }?>
+	return true;
+}
+
+function btncal_onclick() {
+window.location="mysql.php?currentpage=<?php echo strval($currentpage)?>&selname=<?php echo strval($selname)?>";
+}
+//-->
+</SCRIPT>
+</head>
+<body bgcolor="#FFFFFF" leftmargin=0 topmargin=0 marginwidth=0 marginheight=0 background="">
+<br><center>
+<form id=form1 name=form1 action=mysqluseradd.php method=post LANGUAGE=javascript onsubmit="return form1_onsubmit()">
+<table border=0 cellpadding=0 cellspacing=0 width=400>
+<tr>
+<td colspan=2 align=center>
+<?php if ($mode=="1") {?>
+<font class=font1 color=red>用户管理-详细信息</font>
+<?php }else if ($userid <> "") {?>
+	<font class=font1 color=red>用户管理-修改</font>
+	<?php } else {?>
+	<font class=font1 color=red>用户管理-新增</font>
+<?php }?>
+</td>
+</tr>
+<tr>
+<td>
+<table border=0 cellpadding=0 cellspacing=0 width=450>
+<tr height=30 bgcolor=#FFFFF0>
+<TD align=right>用 户 ID：</TD>
+<?php
+if ($userid <> "") {
+	echo "<TD>&nbsp;<b>" . $userid . "</b></TD><input type=hidden id=userid name=userid value=" . $userid . ">";
+}
+else {
+	echo "<TD><INPUT type=text id=userid name=userid size=25 maxlength=10 style=font-size:9pt>&nbsp;最多录入10个字符</TD>";
+}
+?>
+</tr>
+<tr>
+<td bgcolor="Black" colspan=6 height=1><img src="../img/empty.gif" width=1 height=1 border=0></td>
+</tr>
+<tr height=30>
+<TD align=right>用户姓名：</TD>
+<TD><INPUT type="text" id=username name=username size=25 maxlength=10 value="<?php echo strval($username)?>" style=font-size:9pt>&nbsp;最多录入10个汉字</TD>
+</tr>
+<tr>
+<td bgcolor="Black" colspan=6 height=1><img src="../img/empty.gif" width=1 height=1 border=0></td>
+</tr>
+
+<tr height=30 bgcolor=#FFFFF0>
+<TD align=right>用户密码：</TD>
+<TD><INPUT type="password" id=pwd name=pwd size=25 maxlength=10 value="<?php echo strval($password)?>">
+&nbsp;录入4-10个字符</TD>
+</tr>
+<tr>
+<td bgcolor="Black" colspan=6 height=1><img src="../img/empty.gif" width=1 height=1 border=0></td>
+</tr>
+<tr height=30>
+<TD align=right>确认密码：</TD>
+<TD><INPUT type="password" id=pwd1 name=pwd1 size=25 maxlength=10 value="<?php echo strval($password)?>">
+&nbsp;录入4-10个字符</TD>
+</tr>
+
+</table>
+</td>
+</tr>
+<tr>
+<td align="center" colspan=2 height=40>
+<?php //if ($mode=="0") {?>
+<INPUT type="submit" id=btnsav name=btnsav value="[ 保 存 ]" class="txtbox" LANGUAGE=javascript style="BACKGROUND-COLOR: white; BACKGROUND-REPEAT: no-repeat; CURSOR: hand; HEIGHT: 29px; Border:0;font-size:9pt;color:#006699;" >
+&nbsp;&nbsp;&nbsp;&nbsp;
+<?php //}?>
+<INPUT type="button" id=btncal name=btncal value="[ 返 回 ]" class="txtbox" LANGUAGE=javascript style="BACKGROUND-COLOR: white; BACKGROUND-REPEAT: no-repeat; CURSOR: hand; HEIGHT: 29px; Border:0;font-size:9pt;color:#006699;" onclick="return btncal_onclick()">
+</td>
+</tr>
+</table>
+<input type=hidden id=userlist name=userlist value="<?php echo strval($userlist) ?>">
+<input type=hidden id=currentpage name=currentpage value="<?php echo strval($currentpage) ?>">
+<input type=hidden id=selname name=selname value="<?php echo strval($selname) ?>">
+</form>
+
+<?php
+//$Conn->Close();
+mysql_close($Conn);
+$RS=NULL;
+$Conn =NULL;
+?>
+
+</body>
+</html>
+
+<html></html>

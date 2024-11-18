@@ -1,0 +1,30 @@
+<?php
+header("Cache-Control: no-cache, post-check=0, pre-check=0");
+header("Content-type:text/html;charset=gb2312");
+
+$q=$_GET["q"];
+
+$con = mysql_connect("localhost","root","sql");
+mysql_select_db("qingzhou", $con);
+mysql_query("set names gb2312 ");
+
+$sql1 = "select count(*) from php_admin where userid='".$q."'";
+$RS0 = mysql_query($sql1);
+
+$row = mysql_fetch_array($RS0);
+$recount=$row[0];
+
+//Set output to "no suggestion" if no hint were found
+//or to the correct values
+if ($recount == 0)
+{
+$response="";
+}
+else
+{
+$response="ÒÑ¾­ÓÐuserid:".$q."<br>";
+}
+
+//output the response
+echo $response;
+?>

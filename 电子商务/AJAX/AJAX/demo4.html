@@ -1,0 +1,91 @@
+
+ 
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<SCRIPT LANGUAGE=javascript>
+<!--
+function   CreateXMLDOM(){ 
+        var   ActiveX   =   new   Array( "MSXML2.DOMDocument.5.0 ",   
+                                                        "MSXML2.DOMDocument.4.0 ",   
+                                                        "MSXML2.DOMDocument.3.0 ",   
+                                                        "MSXML2.DOMDocument ",   
+                                                        "Microsoft.XMLDOM ", 
+                                                        "MSXML.DOMDocument "); 
+        for   (var   i=0;i <ActiveX.length;i++){ 
+                try{ 
+                        return   new   ActiveXObject(ActiveX[i]); 
+                } 
+                catch(e){} 
+        } 
+        return   null; 
+} 
+
+function stateChanged() 
+{ 
+ var xmlDoc=null;
+ xmlDoc =new ActiveXObject("Msxml2.DOMDocument");
+ xmlDoc.async   =   false ; 
+ xmlDoc.onreadystatechange   =   getReady   ; 
+
+function   getReady() 
+{ 
+if(xmlDoc.readyState==4) 
+{ 
+	var   err   =   xmlDoc.parseError; 
+	if   (err.errorCode   !=   0) 
+	{ 
+		alert(err.reason)   ; 
+	} 
+		else 
+	{ 
+		alert( "加载完成 ")   ; 
+	} 
+} 
+} 
+
+xmlDoc.load( 'demo4.xml') ;
+
+if (xmlDoc.parseError.errorCode != 0) {//如果打开文件出错
+alert("打开文件出错");
+} 
+ 
+ document.getElementById("id").innerHTML=
+ xmlDoc.getElementsByTagName("ID")[0].childNodes[0].nodeValue;
+ document.getElementById("name").innerHTML=
+ xmlDoc.getElementsByTagName("NAME")[0].childNodes[0].nodeValue;
+ document.getElementById("job").innerHTML=
+ xmlDoc.getElementsByTagName("JOB")[0].childNodes[0].nodeValue;
+ document.getElementById("age_text").innerHTML="Age: ";
+ document.getElementById("age").innerHTML=
+ xmlDoc.getElementsByTagName("AGE")[0].childNodes[0].nodeValue;
+ document.getElementById("hometown_text").innerHTML="<br/>From: ";
+ document.getElementById("hometown").innerHTML=
+ xmlDoc.getElementsByTagName("HOMETOWN")[0].childNodes[0].nodeValue;
+ }
+//-->
+</SCRIPT>
+</head>
+<body>
+
+<form> 
+请选择一个用户:
+<select name="users" onchange="return stateChanged()">
+<option value="1">刘备</option><option value="2">关羽</option><option value="3">张飞</option><option value="4">蒋干</option><option value="5">吕布</option></select>
+</form>
+
+<h2>
+<span id="id"></span>&nbsp;<span id="name"></span>
+</h2>
+
+<span id="job"></span>
+
+<div style="text-align: right">
+<span id="age_text"></span>
+<span id="age"></span>
+<span id="hometown_text"></span>
+<span id="hometown"></span>
+</div>
+
+</body>
+</html>

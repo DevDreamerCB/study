@@ -1,0 +1,55 @@
+<body>
+<table id="divContainer" style="HEIGHT: 100%; WIDTH: 396px" border="0">
+  <!--
+  <form> 标签的 enctype 属性规定了在提交表单时要使用哪种内容类型。
+  在表单需要二进制数据时，比如文件内容，请使用 "multipart/form-data"。
+
+<input> 标签的 type="file" 属性规定了应该把输入作为文件来处理。
+举例来说，当在浏览器中预览时，会看到输入框旁边有一个浏览按钮。
+  -->
+  
+  <form method="post" name="frmUpload" enctype="multipart/form-data" action="attachmentmail.php">
+  
+  <tr height="35"><td align="right" valign="bottom">多文件上传 </td></tr>
+  <tr height="35"><td align="right" valign="bottom">请输入邮件地址<input type=text name=mailaddress id=mailaddress> </td></tr>
+ 
+  <tr><td align="center" valign="top">
+    <table class="Transex" border="1" cellspacing="0" cellpadding="0" width="507" >    
+    	<tr>
+		<td nowrap width="55"><label class="FieldLabel">  文件1</label></td>
+        	<td width="448">
+			<input type="file" class="TxtInput" tabindex="1" name="afile1" size="52" ></td>
+	</tr>
+    	<tr>
+		<td nowrap width="55"><label class="FieldLabel">  文件2</label></td>
+        	<td width="448">
+			<input type="file" class="TxtInput" tabindex="1" name="afile2" size="52" ></td>
+	</tr>
+		
+    <tr>
+	<td nowrap width="55"><label class="FieldLabel"> 标题</label></td>
+	<td colspan="1" align="right" >
+            <input type="text" name="T1" size="63">　</td>
+	</tr>
+	
+   <tr>
+	<td nowrap width="55"><label class="FieldLabel"> 正文</label></td>
+	<td colspan="1" align="right">
+            <textarea rows="16" name="S1" cols="61"></textarea></td>
+	</tr>
+		
+    	<tr>
+	<td colspan="2" align="right">
+            <!--<button name="btnOk" id="btnOk" >确定</button>-->
+            <input type="submit" name="submit" value="确定" />
+             <!--<button name="btnCancel" id="btnCancel" onclick="window.close();">取消</button> -->   
+             <button type="button" name="btnCancel" id="btnCancel"  onclick="window.close();" > 取消</button>
+             </td>
+           <input type="hidden" name="ifupload" value=1>&nbsp;&nbsp;
+	</tr>
+  </table>
+  </td>
+  </tr>
+</form>
+</table>
+</body>

@@ -1,0 +1,51 @@
+<?php
+/*
+AJAX在接收responseText或responseXML的值的时候是按照UTF-8的格式来解码的，
+如果服务器段发送的数据不是UTF-8的格式，
+那么接收responseText或responseXML的值有可能为乱码。
+*/
+
+header('Content-Type:text/html;charset=GB2312');
+
+$q=$_GET["q"];
+
+//$Conn = new COM("ADODB.Connection");
+$Conn = @new COM("ADODB.Connection") or die ("ADO Connection faild.");
+
+$MM_Conn_STRING = "DRIVER={Microsoft Access Driver (*.mdb)}; DBQ=" . realpath("userdb.mdb");
+
+$Conn->Open($MM_Conn_STRING);
+
+$RS =new COM("ADODB.RecordSet");//数据集
+
+$SQL = "select id,name,age,hometown,job from t_user";
+$SQL = $SQL . " where id =   '".$q."'";
+//echo $SQL;
+
+$RS->open($SQL,$Conn,1,3);//执行语句,返回记录集
+
+echo "<table border='1'>
+<tr>
+<th>姓名</th>
+<th>年龄</th>
+<th>籍贯</th>
+<th>职业</th>
+</tr>";
+
+while ((!($RS->EOF)) && (!($RS->BOF)))
+{
+  echo "<tr>";
+  echo "<td>" . strval($RS->fields["name"]). "</td>";
+  echo "<td>" . strval($RS->fields["age"]). "</td>";
+  echo "<td>" . strval($RS->fields["hometown"]) . "</td>";
+  echo "<td>" . strval($RS->fields["job"]) . "</td>";
+  echo "</tr>";
+  $RS->MoveNext();
+}
+
+echo "</table>";
+
+$Conn->Close();
+$RS=NULL;
+$Conn =NULL;
+?>

@@ -1,0 +1,48 @@
+<?php
+
+header("Cache-Control: no-cache, post-check=0, pre-check=0");
+header("Content-type:text/html;charset=gb2312");
+?>
+
+<html>
+<head>
+<script src="clienthint.js?ab=1"></script> 
+<script language="javascript">
+function checkvalue(str)
+{
+//alert(document.getElementById("txtHint").innerHTML);
+if ((document.getElementById("txtHint").innerHTML) != '')
+{
+alert("userid重复");
+return false;
+}
+if (document.getElementById("username").value == "")
+{
+alert("username不能为空");
+return false;
+}
+if (document.getElementById("password").value == "")
+{
+alert("password不能为空");
+return false;
+}
+return true;
+}
+</script>
+</head>
+
+<body>
+
+<form method=post name=form1 action=useradd.php onsubmit="return checkvalue();">
+<input type=text id=userid name=userid onblur="showHint(this.value)"><br>
+<span id="txtHint"></span>
+<input type=text id=username name=username><br>
+<input type=password id=password name=password><br>
+<input type=submit name=保存>
+</form>
+
+
+
+</body>
+
+</html>

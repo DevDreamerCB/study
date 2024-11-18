@@ -1,0 +1,36 @@
+<?php
+$con = mysql_connect("localhost","root","sql");
+mysql_select_db("qing_zhou", $con);
+mysql_query("set names gb2312");
+$SQL = "select userid,username,password from php_admin";
+$RS0 = mysql_query($SQL);
+echo "<table>\n";
+/*
+$out = <<<EOF
+<table>\n
+EOF;
+echo $out;
+*/
+while($RS = mysql_fetch_array($RS0))
+{
+$userid=$RS["userid"];
+$username=$RS["username"];
+$password=$RS["password"];
+$out = <<<EOF
+<tr>
+<td><input type=checkbox value=$userid></td>
+<td>$userid</td>
+<td>$username</td>
+<td>$password</td>
+</tr>\n
+EOF;
+echo $out;
+}
+//echo "</table>\n";
+$out = <<<EOF
+</table>\n
+EOF;
+echo $out;
+mysql_close($con)
+?>
+

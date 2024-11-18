@@ -1,0 +1,20 @@
+
+				
+				<?php
+				include"conn.php";
+				$result=mysql_query("SELECT * FROM materials");
+				while($arr=mysql_fetch_array($result))
+				{
+					?>
+        <tr>
+						<td align="center"><?php echo $arr[0];?></td>
+						<td align="center"><?php echo $arr[1];?></td>
+						<td align="center"><?php echo $arr[2];?></td>
+						<td align="center"><?php echo $arr[4];?></td>
+						<td align="center"><?php echo $arr[5];?></td>
+						<td align="center"><a href="update.php? id=<?php echo $arr[0]?>">更新</a></td>
+						<td align="center"><a href="delete.php? id=<?php echo $arr[0]?>">删除</a></td>
+						<td><input name="delete[]"type="checkbox"value=<?php echo $arr[0]?>></td>
+					</tr>
+				
+				<?php}?>

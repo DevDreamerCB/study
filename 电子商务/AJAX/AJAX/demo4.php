@@ -1,0 +1,53 @@
+<?
+header("Cache-Control: no-cache, post-check=0, pre-check=0");
+header("Content-type:text/html;charset=gb2312");
+?>
+<html>
+<head>
+<script src="responsexml.js"></script>
+</head>
+<body>
+
+<form> 
+请选择一个用户:
+<select name="users" onchange="showUser(this.value)">
+<?php
+
+$Conn = new COM("ADODB.Connection");
+
+$MM_Conn_STRING = "DRIVER={Microsoft Access Driver (*.mdb)}; DBQ=" . realpath("userdb.mdb");
+
+$Conn->Open($MM_Conn_STRING);
+
+$RS =new COM("ADODB.RecordSet");//数据集
+
+$SQL = "select id,name,age,hometown,job from t_user order by id";
+
+$RS->open($SQL,$Conn,1,3);//执行语句,返回记录集
+
+$i=1;
+while ((!($RS->EOF)) && (!($RS->BOF)))
+{
+  echo "<option value=\"$i\">".strval($RS->fields["name"])."</option>";
+  $RS->MoveNext();
+  $i++;
+}
+?>
+</select>
+</form>
+
+<h2>
+<span id="id"></span>&nbsp;<span id="name"></span>
+</h2>
+
+<span id="job"></span>
+
+<div style="text-align: right">
+<span id="age_text"></span>
+<span id="age"></span>
+<span id="hometown_text"></span>
+<span id="hometown"></span>
+</div>
+
+</body>
+</html>
